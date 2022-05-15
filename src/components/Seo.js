@@ -1,7 +1,5 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
-import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from "gatsby"
 
 const query = graphql`
@@ -21,11 +19,14 @@ const query = graphql`
 const Seo = ({ title, description }) => {
   const { site } = useStaticQuery(query)
   const { author, siteTitle, siteDesc, image, siteURL } = site.siteMetadata
-
-  //trim the string to the maximum length
-  let descText = description.substr(0, 179);
-  //re-trim if we are in the middle of a word
-  descText = descText.substr(0, Math.min(descText.length, descText.lastIndexOf(" ")))
+  let descText
+  
+  if (description && description.length > 0) {
+    //trim the string to the maximum length
+    descText = description.substr(0, 179);
+    //re-trim if we are in the middle of a word
+    descText = descText.substr(0, Math.min(descText.length, descText.lastIndexOf(" ")))
+  }
 
   return (
     <Helmet htmlAttributes={{ lang: "en" }} title={`${title} | ${siteTitle}`}>
@@ -43,3 +44,4 @@ const Seo = ({ title, description }) => {
 }
 
 export default Seo
+

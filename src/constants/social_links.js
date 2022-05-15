@@ -44,10 +44,12 @@ const tempLinks = data.map(link => (
   </li>
 ))
 
-export default ({ styleClass }) => {
+const SocialLinks = ({ styleClass }) => {
   return (
     <ul className={`social-links ${styleClass ? styleClass : ""}`}>
       {tempLinks}
     </ul>
   )
 }
+
+export default SocialLinks;
