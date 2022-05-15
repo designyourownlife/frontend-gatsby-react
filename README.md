@@ -16,7 +16,7 @@
 {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `http://localhost:1337`,
+        apiURL: process.env.STRAPI_API_URL || `http://localhost:1337`,
         queryLimit: 1000, // Default to 100
         
         // Older Plugin Version 0.0.12 (used in the starter)

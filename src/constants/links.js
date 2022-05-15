@@ -1,3 +1,6 @@
+import React from "react"
+import { Link } from "gatsby"
+
 const data = [
   {
     id: 1,
@@ -15,10 +18,27 @@ const data = [
     url: "/projects/",
   },
   {
+    id: 4,
+    text: "blog",
+    url: "/blog/",
+  },
+  {
     id: 5,
     text: "contact",
     url: "/contact/",
   },
 ]
 
-export default data
+const tempLinks = data.map(link => (
+  <li key={link.id}>
+    <Link to={link.url}>{link.text}</Link>
+  </li>
+))
+
+export default ({ styleClass }) => {
+  return (
+    <ul className={`page-links ${styleClass ? styleClass : ""}`}>
+      {tempLinks}
+    </ul>
+  )
+}
